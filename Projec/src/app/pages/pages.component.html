@@ -1,0 +1,37 @@
+<mat-toolbar class="mat-elevation-z4">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    Reserva Laboratorios
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z4">
+        <img class="avatar mat-elevation-z4"
+            src="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"
+            width="200" height="200" />
+
+        <h4 class="name m-0 mt-2">Nombre de Usuario</h4>
+        <p class="designation m-0">Rol de Usuario</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" *ngFor="let option of mainOptions" [routerLink]="option.router">
+            <i [classList]="option.icon"></i>
+            <span class="fw-normal">{{ option.name }}</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" (click)="cerrarSesion()">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Cerrar Sesión</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <main class="main__content ">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

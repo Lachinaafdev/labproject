@@ -1,0 +1,58 @@
+<h2 class="fw-normal">Crear nuevo profesor</h2>
+<br>
+<form [formGroup]="form" autocomplete="off">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-4">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input type="text" placeholder="Ingrese nombre" matInput formControlName="nombre">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error>Nombre requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input type="text" placeholder="Ingrese apellidos" matInput formControlName="apellidos">
+                <mat-icon matSuffix>badge</mat-icon>
+                <mat-error>Apellidos requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Matrícula</mat-label>
+                <input type="text" placeholder="Ingrese matricula" matInput formControlName="matricula" minlength="8"
+                    maxlength="8">
+                <mat-icon matSuffix>account_box</mat-icon>
+                <mat-hint>La matrícula debe contener 8 numeros</mat-hint>
+                <mat-error *ngIf="form.invalid">{{getMessageMatricula()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Asignar rol</mat-label>
+                <mat-select formControlName="rol">
+                    <mat-option *ngFor="let rol of roles" [value]="rol.name">
+                        {{rol.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Rol requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Genero</mat-label>
+                <mat-select formControlName="genero">
+                    <mat-option value=1>Masculino</mat-option>
+                    <mat-option value=0>Femenino</mat-option>
+                </mat-select>
+                <mat-error>Genero requerido</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="text-end">
+        <button class="button-fill" mat-raised-button color="primary" (click)="crear()" [disabled]="form.invalid">Crear
+            Usuario</button>
+    </div>
+</form>
+<swal #errorSW></swal>

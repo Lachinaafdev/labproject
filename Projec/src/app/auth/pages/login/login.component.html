@@ -1,0 +1,31 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <mat-card class="mat-elevation-z6">
+        <mat-card-title class="fw-normal text-dark text-center mb-5">Sistema Prestamos Laboratorios</mat-card-title>
+        <mat-card-content>
+            <form autocomplete="off" [formGroup]="form" (submit)="login()">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="text" placeholder="Ingrese su email" matInput formControlName="email">
+                    <mat-icon class="material-icons-outlined" matSuffix>email</mat-icon>
+                    <mat-error *ngIf="form.invalid">{{getMessageErrorEmail()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" placeholder="Ingrese su contraseña" matInput formControlName="password">
+                    <mat-icon class="material-icons-outlined" matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="form.invalid">{{getMessageErrorPassword()}}</mat-error>
+                </mat-form-field>
+
+                <button [disabled]="form.invalid" color="primary" class="w-100" type="submit" mat-flat-button>
+                    Ingresar
+                </button>
+            </form>
+            <a class="d-block text-muted text-center mt-4" href="#">¿Has olvidado tu contraseña ?</a>
+        </mat-card-content>
+    </mat-card>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Hablar es barato. Enséñame el código </p>
+    </ngx-spinner>
+</div>
+<lib-ng-toast></lib-ng-toast>
